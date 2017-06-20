@@ -1,0 +1,32 @@
+<div class="col-md-3 col-xs-12 hidden-md hidden-lg image-slice">
+    <img src="/images/centerpieces/water2.jpg" />
+</div>
+<div class="col-lg-3 col-md-3 col-xs-12 hidden-sm hidden-xs center-col">
+    <img src="/images/centerpieces/water2.jpg" />
+</div>
+<div class="col-lg-6 col-md-6 col-xs-12 right-col">
+    <h1>location</h1>
+    <div id="copy">
+        <p>restoration bodywork and massage therapy is located at 1640 east thomas road, back building, phoenix, arizona 85016.</p>
+
+        <p>the studio is just east of 16th street, on the north side of the road, in the building behind 1640 east thomas, which is the first building east of walgreen's.</p>
+
+        <p>restoration bodywork can be reached by phone at 602.695.0809. to reach us by email, please use the <a href="/contact">contact form</a> on this site.</p>
+    </div>
+
+    <ng-map default-style="true" center="33.480458, -112.045939" zoom="16">
+        <marker id="foo" position="33.480458, -112.045939"
+                on-click="map.showInfoWindow('bar')">
+        </marker>
+        <info-window id="bar" visible-on-marker="foo">
+            <div ng-non-bindable>
+                <div id="siteNotice"></div>
+                <div id="bodyContent">
+                    <img src="/images/restoration_logo.png" width="50%"/><br /><br />
+                    <p>behind 1640 east thomas, phoenix, az</p>
+                </div>
+            </div>
+        </info-window>
+    </ng-map>
+
+</div>

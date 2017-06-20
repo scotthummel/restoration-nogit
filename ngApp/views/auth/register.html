@@ -1,0 +1,51 @@
+<div class="col-lg-9 col-md-9 col-xs-12 right-col">
+    <h1>register</h1>
+    <div id="copy">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">register</h3>
+            </div>
+            <div class="panel-body">
+               <form ng-submit="vm.register(vm.user)">
+                   <div class="row">
+                       <div class="col-sm-6">
+                           <div class="form-group">
+                               <label for="firstName">first name</label>
+                               <input type="text" id="firstName" class="form-control" ng-model="vm.user.firstName"/>
+                           </div>
+                       </div>
+                       <div class="col-sm-6">
+                           <div class="form-group">
+                               <label for="lastName">last name</label>
+                               <input type="text" id="lastName" class="form-control" ng-model="vm.user.lastName"/>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="row">
+                       <div class="col-sm-12">
+                           <div class="form-group">
+                               <label for="email">email address</label>
+                               <input type="text" id="email" class="form-control" ng-model="vm.user.email"/>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="row">
+                       <div class="col-sm-6">
+                           <div class="form-group">
+                               <label for="password">password</label>
+                               <input type="password" id="password" class="form-control" ng-model="vm.user.password"/>
+                           </div>
+                       </div>
+                       <div class="col-sm-6">
+                           <div class="form-group">
+                               <label for="passwordConfirm">password confirm</label>
+                               <input type="password" id="passwordConfirm" class="form-control" ng-model="vm.user.passwordConfirm"/>
+                           </div>
+                           <button type="submit" class="btn btn-primary pull-right">register</button>
+                       </div>
+                   </div>
+               </form>
+            </div>
+        </div>
+    </div>
+</div>

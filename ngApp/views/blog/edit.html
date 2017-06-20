@@ -1,0 +1,29 @@
+<div class="col-lg-9 col-md-9 col-xs-12 right-col">
+    <h1>edit post</h1>
+    <div id="copy">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">edit post</h3>
+            </div>
+            <div class="panel-body">
+                <form ng-submit="vm.editPost()">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="title">title</label>
+                                <input type="text" id="title" class="form-control" ng-model="vm.post.title" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>post</label>
+                                <div ckeditor="options" ng-model="vm.post.body" ready="onReady()"></div>
+                            </div>
+                            <button type="submit" class="btn btn-primary pull-right">edit post</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

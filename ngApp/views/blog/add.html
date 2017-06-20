@@ -1,0 +1,33 @@
+<div class="col-lg-9 col-md-9 col-xs-12 right-col">
+    <h1>add post</h1>
+    <div id="copy">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">add post</h3>
+            </div>
+            <div class="panel-body">
+                <form ng-submit="vm.addPost(vm.post)">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="title">title</label>
+                                <input type="text" id="title" class="form-control" ng-model="vm.post.title"/>
+                            </div>
+                            <label>Tags:</label>
+                            <div class="checkbox-inline" ng-repeat="tag in vm.tags">
+                                <input type="checkbox" ng-model="vm.selectedTags[tag._id]"/>{{ tag.name }}
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>post</label>
+                                <div ckeditor="options" ng-model="vm.post.body" ready="onReady()"></div>
+                            </div>
+                            <button type="submit" class="btn btn-primary pull-right">add post</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

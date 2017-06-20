@@ -1,0 +1,29 @@
+<div class="col-lg-9 col-md-9 col-xs-12 right-col">
+    <h1>login</h1>
+    <div id="copy">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">login</h3>
+            </div>
+            <div class="panel-body">
+                <form ng-submit="vm.login(vm.email, vm.password)">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="email">email address</label>
+                                <input type="text" id="email" class="form-control" ng-model="vm.email"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="password">password</label>
+                                <input type="password" id="password" class="form-control" ng-model="vm.password"/>
+                            </div>
+                            <button type="submit" class="btn btn-primary pull-right">login</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

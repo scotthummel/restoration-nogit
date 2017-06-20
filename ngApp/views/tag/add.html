@@ -1,0 +1,23 @@
+<div class="col-lg-9 col-md-9 col-xs-12 right-col">
+    <h1>add post</h1>
+    <div id="copy">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">add tag</h3>
+            </div>
+            <div class="panel-body">
+                <form ng-submit="vm.addTag(vm.tag)">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="name">tag</label>
+                                <input type="text" id="name" class="form-control" ng-model="vm.tag.name"/>
+                            </div>
+                            <button type="submit" class="btn btn-primary pull-right">add tag</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

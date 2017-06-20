@@ -1,0 +1,19 @@
+<div class="col-md-3 col-xs-12 hidden-md hidden-lg image-slice">
+    <img src="/images/centerpieces/about.jpg" />
+</div>
+<div class="col-lg-3 col-md-3 col-xs-12 hidden-sm hidden-xs center-col">
+    <img src="/images/centerpieces/about.jpg" />
+</div>
+<div class="col-lg-6 col-md-6 col-xs-12 right-col">
+    <h1>{{ vm.tag.name }}</h1>
+    <div id="copy">
+
+        <div ng-if="vm.posts">
+            <div ng-repeat="post in vm.posts">
+                <h3>{{ post.title }}</h3>
+                {{ post.body}}
+            </div>
+        </div>
+
+    </div>
+</div>

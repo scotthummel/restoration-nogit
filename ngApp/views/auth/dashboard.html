@@ -1,0 +1,52 @@
+<div class="col-lg-9 col-md-9 col-xs-12 right-col">
+    <br />
+    <a class="pull-right" href="#" ng-click="vm.logout()">Logout</a>
+    <h1>dashboard</h1>
+    <div id="copy">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">dashboard</h3>
+            </div>
+            <div class="panel-body">
+                <div id="scroll">
+                    <a href="/post/add" class="btn btn-primary pull-right">Add Post</a>
+                    <a href="/tag/add" class="btn btn-primary pull-right">Add Tag</a><br /><br/>
+
+                    <h3>posts</h3>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped" ng-if="vm.posts.length">
+                            <tr>
+                                <th></th>
+                                <th>post title</th>
+                            </tr>
+                            <tr ng-repeat="post in vm.posts">
+                                <td>
+                                    <a href="/post/edit/{{ post._id}}">edit</a> |
+                                    <a href="#" ng-click="vm.remove(post._id)">delete</a>
+                                </td>
+                                <td>{{ post.title }}</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <h3>tags</h3>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped" ng-if="vm.tags.length">
+                            <tr>
+                                <th></th>
+                                <th>tag</th>
+                            </tr>
+                            <tr ng-repeat="tag in vm.tags">
+                                <td>
+                                    <a href="/tag/edit/{{ tag._id}}">edit</a> |
+                                    <a href="#" ng-click="vm.remove(tag._id)">delete</a>
+                                </td>
+                                <td>{{ tag.name }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
