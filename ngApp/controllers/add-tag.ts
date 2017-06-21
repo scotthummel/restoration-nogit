@@ -1,10 +1,10 @@
 namespace restoration.Controllers {
 
-    export class AddTagController {
+    export class AddTagController extends BaseController{
         public tag;
 
-        constructor(private TagService: restoration.Services.TagService, private $state) {
-
+        constructor(private TagService: restoration.Services.TagService, private $state, public AuthService: restoration.Services.AuthService) {
+            super(AuthService);
         }
 
         addTag(tag) {

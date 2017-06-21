@@ -1,10 +1,10 @@
 namespace restoration.Controllers {
-    export class LoginController {
+    export class LoginController extends BaseController {
         public email;
         public password;
 
         constructor(public AuthService: restoration.Services.AuthService) {
-
+            super(AuthService);
         }
 
         login() {
