@@ -113,7 +113,13 @@ namespace restoration {
                 controller: restoration.Controllers.BlogTagController,
                 controllerAs: 'vm',
                 resolve: {
-                    $title: function() { return 'blog | restoration bodywork and massage therapy | phoenix, az'; }
+                    tag: ['TagService', '$stateParams', function(TagService, $stateParams) {
+                        return TagService.slug($stateParams.slug).then(res => {
+                            return res[0];
+                        });
+
+                    }],
+                    $title: function(tag) { return tag.name + ' | restoration bodywork and massage therapy | phoenix, az'; }
                 }
             })
             .state('contact', {
