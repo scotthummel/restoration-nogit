@@ -107,6 +107,21 @@ namespace restoration {
                     $title: function() { return 'blog | restoration bodywork and massage therapy | phoenix, az'; }
                 }
             })
+            .state('post', {
+                url: '/blog/post/:slug',
+                templateUrl: '/ngApp/views/pages/post.html',
+                controller: restoration.Controllers.BlogPostController,
+                controllerAs: 'vm',
+                resolve: {
+                    // tag: ['TagService', '$stateParams', function(TagService, $stateParams) {
+                    //     return TagService.slug($stateParams.slug).then(res => {
+                    //         return res[0];
+                    //     });
+                    //
+                    // }],
+                    //$title: function(tag) { return tag.name + ' | restoration bodywork and massage therapy | phoenix, az'; }
+                }
+            })
             .state('tags', {
                 url: '/blog/tags/:slug',
                 templateUrl: '/ngApp/views/pages/tag.html',

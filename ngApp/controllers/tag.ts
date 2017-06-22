@@ -4,11 +4,15 @@ namespace restoration.Controllers {
         public tag;
         public posts;
 
-        constructor(public TagService: restoration.Services.TagService, public $stateParams, public AuthService: restoration.Services.AuthService) {
+        constructor(public TagService: restoration.Services.TagService, public $stateParams, public AuthService: restoration.Services.AuthService, private $sce) {
             super(AuthService);
 
-            this.TagService.slug(this.$stateParams['slug']).then((posts) => {
+            this.TagService.slug(this.$stateParams['slug']).then((posts:any) => {
                 this.tag = posts[0];
+
+                posts[0].posts.forEach(post => {
+                    post.body = this.$sce.trustAsHtml(post.body);
+                });
                 this.posts = posts[0].posts;
             });
         }

@@ -5,16 +5,10 @@
     <img src="/images/centerpieces/about.jpg" />
 </div>
 <div class="col-lg-6 col-md-6 col-xs-12 right-col">
-    <h1>{{ vm.tag.name }}</h1>
+    <h1>blog</h1>
     <div id="copy">
-
-        <div ng-if="vm.posts">
-            <div ng-repeat="post in vm.posts">
-                <h3>{{ post.title }}</h3>
-                <div ng-bind-html="post.body"></div>
-            </div>
-        </div>
-
+        <h3>{{ vm.post.title }}</h3>
+        <div ng-bind-html="vm.post.body"></div>
     </div>
 </div>
 

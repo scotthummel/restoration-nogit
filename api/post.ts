@@ -26,6 +26,9 @@ router.post('/', (req, res) => {
     let post = new Post();
     post.title = req.body.title;
     post.body = req.body.body;
+    post.slug = req.body.title.toLowerCase()
+        .replace(/[^\w ]+/g,'')
+        .replace(/ +/g,'-');
     post.createdAt = new Date().toLocaleString();
 
     post.save().then((newPost) => {

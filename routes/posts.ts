@@ -10,6 +10,9 @@ router.post('/', (req, res) => {
     let post:any = new Post();
     post.title = req.body.post.title;
     post.body = req.body.post.body;
+    post.slug = req.body.post.title.toLowerCase()
+        .replace(/[^\w ]+/g,'')
+        .replace(/ +/g,'-');
 
     post.save(function(err, newPost) {
         let tagIds = req.body.tags;
@@ -74,5 +77,15 @@ router.delete('/:id', (req, res) => {
         console.log(err);
     });
 });
+
+router.get('/post/:slug', (req, res) => {
+    Post.findOne({slug: req.params['slug']}).then((post) => {
+        res.json(post);
+    }).catch((err) => {
+        res.status(500);
+        console.log(err);
+    });
+});
+
 
 export default router;

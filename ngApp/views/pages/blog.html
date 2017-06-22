@@ -15,6 +15,7 @@
                 <div ng-repeat="post in vm.posts">
                     <h3>{{ post.title }}</h3>
                     <div ng-bind-html="post.body"></div>
+                    <a class="btn btn-primary pull-right" href="/blog/post/{{ post.slug }}">Read Post</a>
                 </div>
             </div>
         </div>

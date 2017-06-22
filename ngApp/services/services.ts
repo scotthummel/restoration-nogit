@@ -81,6 +81,15 @@ namespace restoration.Services {
                 });
         }
 
+        public slug(slug) {
+            return this.$http.get('/api/v1/posts/post/' + slug)
+                .then(res => {
+                    return res.data
+                }).catch(res => {
+                    console.log(res)
+                });
+        }
+
         public update(id, post) {
             let q = this.$q.defer();
             this.$http.post('/api/v1/posts/' + id, { post: post })
