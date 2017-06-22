@@ -97,7 +97,7 @@ namespace restoration.Services {
             let q = this.$q.defer();
             this.$http.delete('/api/v1/posts/' + id)
                 .then(res => {
-                    this.$state.go('dashboard');
+                    this.$state.reload();
                 })
                 .catch(res => {
                     console.error(res);

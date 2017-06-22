@@ -14,7 +14,7 @@
             <div ng-if="vm.posts">
                 <div ng-repeat="post in vm.posts">
                     <h3>{{ post.title }}</h3>
-                    {{ post.body}}
+                    <div ng-bind-html="post.body"></div>
                 </div>
             </div>
         </div>
