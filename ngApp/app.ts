@@ -113,13 +113,18 @@ namespace restoration {
                 controller: restoration.Controllers.BlogPostController,
                 controllerAs: 'vm',
                 resolve: {
-                    // tag: ['TagService', '$stateParams', function(TagService, $stateParams) {
-                    //     return TagService.slug($stateParams.slug).then(res => {
-                    //         return res[0];
-                    //     });
-                    //
-                    // }],
-                    //$title: function(tag) { return tag.name + ' | restoration bodywork and massage therapy | phoenix, az'; }
+                    post: ['BlogService', '$stateParams', function(BlogService, $stateParams) {
+                        return BlogService.slug($stateParams.slug).then(res => {
+                            if (res === null) {
+                                let post = {title:String};
+                                return {title : 'post not found'};
+                            } else {
+                                return res;
+                            }
+                        });
+
+                    }],
+                    $title: function(post) { return post.title + ' | blog | restoration bodywork and massage therapy | phoenix, az'; }
                 }
             })
             .state('tags', {
@@ -130,7 +135,12 @@ namespace restoration {
                 resolve: {
                     tag: ['TagService', '$stateParams', function(TagService, $stateParams) {
                         return TagService.slug($stateParams.slug).then(res => {
-                            return res[0];
+                            if (res.length == 0) {
+                                let tag = {name:String};
+                                return {name : 'tag not found'};
+                            } else {
+                                return res[0];
+                            }
                         });
 
                     }],
