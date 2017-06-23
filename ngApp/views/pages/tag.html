@@ -1,22 +1,22 @@
 <div class="col-md-3 col-xs-12 hidden-md hidden-lg image-slice">
-    <img src="/images/centerpieces/about.jpg" />
+    <img src="/images/centerpieces/water.jpg" />
 </div>
 <div class="col-lg-3 col-md-3 col-xs-12 hidden-sm hidden-xs center-col">
-    <img src="/images/centerpieces/about.jpg" />
+    <img src="/images/centerpieces/water.jpg" />
 </div>
 <div class="col-lg-6 col-md-6 col-xs-12 right-col">
     <h1>blog</h1>
     <h2>{{ vm.tag.name }}</h2>
     <div id="copy">
-
         <div ng-if="vm.posts">
-            <div ng-repeat="post in vm.posts">
+            <div ng-repeat="post in vm.posts" id="scroll">
                 <h3>{{ post.title }}</h3>
                 <div ng-bind-html="post.body"></div>
             </div>
         </div>
         <div ng-if="!vm.posts">
-            <p>Posts not found.</p>
+            <h3>posts not found</h3>
+            <p>we're sorry, but we could not find the posts for which you are looking.</p>
         </div>
 
     </div>
