@@ -4,8 +4,8 @@ namespace restoration.Controllers {
         public posts;
         public tags;
 
-        constructor(public BlogService: restoration.Services.BlogService, public TagService: restoration.Services.TagService, public AuthService: restoration.Services.AuthService, public $sce) {
-            super(AuthService);
+        constructor(public BlogService: restoration.Services.BlogService, public TagService: restoration.Services.TagService, public AuthService: restoration.Services.AuthService, public $sce, public $document) {
+            super(AuthService, $document);
 
             this.BlogService.list().then((posts:any) => {
                 posts.forEach(post => {

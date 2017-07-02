@@ -8,7 +8,7 @@
     <h1>blog</h1>
     <div id="copy">
         <div ng-if="vm.tags">
-            <strong>tags: </strong><span ng-repeat="tag in vm.tags"><a href="/blog/tags/{{ tag.name }}">{{ tag.name}}</a> | </span>
+            <strong>tags: </strong><span ng-repeat="tag in vm.tags"><a href="/blog/tags/{{ tag.slug }}">{{ tag.name}}</a> | </span>
         </div>
         <div id="scroll">
             <div ng-if="vm.posts">

@@ -5,9 +5,9 @@ namespace restoration.Controllers {
         public id;
         public options;
 
-        constructor(private BlogService: restoration.Services.BlogService, private $state, private $stateParams: ng.ui.IStateParamsService, public AuthService: restoration.Services.AuthService
+        constructor(private BlogService: restoration.Services.BlogService, private $state, private $stateParams: ng.ui.IStateParamsService, public AuthService: restoration.Services.AuthService, public $document
         ) {
-            super(AuthService);
+            super(AuthService, $document);
 
             let postId = this.id = $stateParams['id'];
             this.BlogService.get(postId).then(post => {

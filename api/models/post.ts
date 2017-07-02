@@ -1,4 +1,5 @@
 import mongoose = require('mongoose');
+let uniqueValidator = require('mongoose-unique-validator');
 
 export interface IPost extends mongoose.Document {
     title: string;
@@ -9,10 +10,21 @@ export interface IPost extends mongoose.Document {
     }
 }
 
-let PostSchema = new mongoose.Schema({
-    title: String,
-    body: String,
-    slug: String
+let postSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required:[true, 'A post title is required']
+    },
+    body: {
+        type: String,
+        required:[true, 'A post body is required']
+    },
+    slug: {
+        type: String,
+        unique: true
+    }
 });
 
-export default mongoose.model<IPost>('Post', PostSchema);
+postSchema.plugin(uniqueValidator);
+
+export default mongoose.model<IPost>('Post', postSchema);

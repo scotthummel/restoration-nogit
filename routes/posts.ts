@@ -16,15 +16,17 @@ router.post('/', (req, res) => {
 
     post.save(function(err, newPost) {
         let tagIds = req.body.tags;
-        tagIds.forEach(id => {
-            Tag.findById(id).then((tag) => {
-                console.log(tag);
-                tag.posts.push(newPost._id);
-                tag.save();
+        try {
+            tagIds.forEach(id => {
+                Tag.findById(id).then((tag) => {
+                    console.log(tag);
+                    tag.posts.push(newPost._id);
+                    tag.save();
+                });
             });
-        });
+        } catch(e){}
         if (err) {
-            console.log(err);
+             res.status(500).send(err).end();
         } else {
             res.end();
         }

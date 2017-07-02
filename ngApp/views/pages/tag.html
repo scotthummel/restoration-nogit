@@ -6,7 +6,10 @@
 </div>
 <div class="col-lg-6 col-md-6 col-xs-12 right-col">
     <h1>blog</h1>
-    <h2>{{ vm.tag.name }}</h2>
+    <h2>tag: {{ vm.tag.name }}</h2>
+
+    <hr />
+
     <div id="copy">
         <div ng-if="vm.posts">
             <div ng-repeat="post in vm.posts" id="scroll">

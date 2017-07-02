@@ -127,7 +127,7 @@ ul.list li {
 
 #scroll {
     overflow:scroll;
-    height: 600px;
+    height: 550px;
     width: 100%;
 }
 
@@ -344,6 +344,21 @@ span.rate {
     height: 400px;
     width: 100%;
     border: 1px solid black;
+}
+
+.cke_contents {
+    height: 400px !important;
+}
+
+.alert {
+    margin-top: 0;
+}
+
+.error {
+    color: darkred;
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
 }
 
 @media (max-width: 992px) {

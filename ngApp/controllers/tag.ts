@@ -4,8 +4,8 @@ namespace restoration.Controllers {
         public tag;
         public posts;
 
-        constructor(public TagService: restoration.Services.TagService, public $stateParams, public AuthService: restoration.Services.AuthService, private $sce) {
-            super(AuthService);
+        constructor(public TagService: restoration.Services.TagService, public $stateParams, public AuthService: restoration.Services.AuthService, private $sce, public $document) {
+            super(AuthService, $document);
 
             this.TagService.slug(this.$stateParams['slug']).then((posts:any) => {
                 this.tag = posts[0];

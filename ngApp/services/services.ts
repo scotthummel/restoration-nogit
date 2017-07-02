@@ -2,7 +2,7 @@ namespace restoration.Services {
 
     export class AuthService {
 
-        constructor(private $http: ng.IHttpService, private $window: ng.IWindowService, private $q: ng.IQService, private $state) {
+        constructor(private $http: ng.IHttpService, private $window: ng.IWindowService, private $q: ng.IQService, private $state, private $document) {
 
         }
 
@@ -13,7 +13,7 @@ namespace restoration.Services {
                     this.$state.go('dashboard');
                 })
                 .catch(res => {
-                    console.error(res);
+                    this.displayError(res.data.errors);
                 })
         }
 
@@ -26,7 +26,7 @@ namespace restoration.Services {
                     this.$state.go('dashboard');
                 })
                 .catch(res => {
-                    console.error(res);
+                    this.displayError(res.data);
                 });
             return q.promise;
         }
@@ -44,21 +44,41 @@ namespace restoration.Services {
         public getToken() {
             return this.$window.localStorage['token'];
         }
+
+        public displayError(error) {
+            let body = this.$document.find('body').eq(0);
+            body.prepend(angular.element('<div class="alert alert-danger">' + error + '</div>'));
+        }
     }
 
     export class BlogService {
-        constructor(private $http: ng.IHttpService, private $window: ng.IWindowService, private $q: ng.IQService, private $state) {
+        constructor(private $http: ng.IHttpService, private $window: ng.IWindowService, private $q: ng.IQService, private $state, public $document) {
+        }
+
+        public displayError(errors) {
+            let body = this.$document.find('body').eq(0);
+            let keys = Object.keys(errors);
+            keys.forEach(key => {
+                body.prepend(angular.element('<div class="alert alert-danger">' + eval('errors.' + key + '.message') + '</div>'));
+            });
         }
 
         save(post, tags) {
-            let keys = Object.keys(tags);
+            let keys = null;
+            try {
+                keys = Object.keys(tags);
+            } catch(e) {}
+
+            if (post === undefined) {
+                post = {title: '', body: ''};
+            }
             let q = this.$q.defer();
             this.$http.post('/api/v1/posts', { post: post, tags: keys })
                 .then(res => {
                     this.$state.go('dashboard');
                 })
                 .catch(res => {
-                    console.error(res);
+                    this.displayError(res.data.errors);
                 });
             return q.promise;
         }
@@ -68,7 +88,7 @@ namespace restoration.Services {
                 .then(res => {
                    return res.data
                 }).catch(res => {
-                    console.log(res)
+                    this.displayError(res.data.errors);
                 });
         }
 
@@ -77,7 +97,7 @@ namespace restoration.Services {
                 .then(res => {
                     return res.data
                 }).catch(res => {
-                    console.log(res)
+                    this.displayError(res.data.errors);
                 });
         }
 
@@ -86,7 +106,7 @@ namespace restoration.Services {
                 .then(res => {
                     return res.data
                 }).catch(res => {
-                    console.log(res)
+                    this.displayError(res.data.errors);
                 });
         }
 
@@ -97,7 +117,7 @@ namespace restoration.Services {
                     this.$state.go('dashboard');
                 })
                 .catch(res => {
-                    console.error(res);
+                    this.displayError(res.data.errors);
                 });
             return q.promise;
         }
@@ -109,24 +129,36 @@ namespace restoration.Services {
                     this.$state.reload();
                 })
                 .catch(res => {
-                    console.error(res);
+                    this.displayError(res.data.errors);
                 });
             return q.promise;
         }
     }
 
     export class TagService {
-        constructor(private $http: ng.IHttpService, private $window: ng.IWindowService, private $q: ng.IQService, private $state) {
+        constructor(private $http: ng.IHttpService, private $window: ng.IWindowService, private $q: ng.IQService, private $state, public $document) {
+        }
+
+        public displayError(errors) {
+            let body = this.$document.find('body').eq(0);
+            let keys = Object.keys(errors);
+            keys.forEach(key => {
+                body.prepend(angular.element('<div class="alert alert-danger">' + eval('errors.' + key + '.message') + '</div>'));
+            });
         }
 
         save(tag) {
             let q = this.$q.defer();
+            if (tag == undefined) {
+                tag = {name:''}
+            }
+
             this.$http.post('/api/v1/tags', { tag: tag })
                 .then(res => {
                     this.$state.go('dashboard');
                 })
                 .catch(res => {
-                    console.error(res);
+                    this.displayError(res.data.errors);
                 });
             return q.promise;
         }
@@ -136,7 +168,7 @@ namespace restoration.Services {
                 .then(res => {
                     return res.data
                 }).catch(res => {
-                    console.log(res)
+                    this.displayError(res.data.errors);
                 });
         }
 
@@ -145,7 +177,7 @@ namespace restoration.Services {
                 .then(res => {
                     return res.data
                 }).catch(res => {
-                    console.log(res)
+                    this.displayError(res.data.errors);
                 });
         }
 
@@ -154,7 +186,7 @@ namespace restoration.Services {
                 .then(res => {
                     return res.data
                 }).catch(res => {
-                    console.log(res)
+                    this.displayError(res.data.errors);
                 });
         }
 
@@ -165,7 +197,7 @@ namespace restoration.Services {
                     this.$state.go('dashboard');
                 })
                 .catch(res => {
-                    console.error(res);
+                    this.displayError(res.data.errors);
                 });
             return q.promise;
         }
@@ -174,10 +206,10 @@ namespace restoration.Services {
             let q = this.$q.defer();
             this.$http.delete('/api/v1/tags/' + id)
                 .then(res => {
-                    this.$state.go('dashboard');
+                    this.$state.reload();
                 })
                 .catch(res => {
-                    console.error(res);
+                    this.displayError(res.data.errors);
                 });
             return q.promise;
         }

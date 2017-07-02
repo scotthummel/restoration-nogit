@@ -6,14 +6,17 @@
                 <h3 class="panel-title">add tag</h3>
             </div>
             <div class="panel-body">
-                <form ng-submit="vm.addTag(vm.tag)">
+                <form name="add" novalidate ng-submit="vm.addTag(vm.tag)">
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="name">tag</label>
-                                <input type="text" id="name" class="form-control" ng-model="vm.tag.name"/>
+                                <input type="text" name="tag" id="name" class="form-control" ng-model="vm.tag.name" ng-required="true"/>
+                                <span ng-show="add.tag.$touched && add.tag.$error.required" class="error">
+                                    A tag name is required.
+                                </span>
                             </div>
-                            <button type="submit" class="btn btn-primary pull-right">add tag</button>
+                            <button type="submit" class="btn btn-primary pull-right" ng-disabled="add.$invalid">add tag</button>
                         </div>
                     </div>
                 </form>

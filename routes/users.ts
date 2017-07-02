@@ -28,25 +28,20 @@ router.post('/register', (req, res) => {
 
 router.post('/login/local', function(req, res, next) {
   if(!req.body.email || !req.body.password) {
-    return res.status(400).send("Please fill out every field");
+    return res.status(400).send("Please provide an email address and a password.");
   }
   passport.authenticate('local', function(err, user, info) {
-    //console.log(user);
     if (err) {
-      res.status(400);
+      res.status(400).send('An unknown error occurred.');
     }
     if (user) {
       return res.json({ token: user.generateJWT() })
+    } else {
+      res.status(403).send('We could not find a user with those credentials.')
     }
-    return res.status(400);
+    //return res.status(400);
   })(req, res, next);
 });
-
-// router.post("/upload", function(req, res){
-//   console.log('The id of the user is' + req['payload']['id']);
-//   res.end();
-// });
-
 
 export default router;
 

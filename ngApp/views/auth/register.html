@@ -6,18 +6,24 @@
                 <h3 class="panel-title">register</h3>
             </div>
             <div class="panel-body">
-               <form ng-submit="vm.register(vm.user)">
+               <form name="register" novalidate ng-submit="vm.register(vm.user)">
                    <div class="row">
                        <div class="col-sm-6">
                            <div class="form-group">
                                <label for="firstName">first name</label>
-                               <input type="text" id="firstName" class="form-control" ng-model="vm.user.firstName"/>
+                               <input type="text" id="firstName" class="form-control" ng-model="vm.user.firstName" ng-required="true"/>
+                               <span ng-show="register.model.$touched && register.model.$error.required" class="error">
+                                    An first name is required.
+                                </span>
                            </div>
                        </div>
                        <div class="col-sm-6">
                            <div class="form-group">
                                <label for="lastName">last name</label>
-                               <input type="text" id="lastName" class="form-control" ng-model="vm.user.lastName"/>
+                               <input type="text" id="lastName" class="form-control" ng-model="vm.user.lastName" ng-required="true"/>
+                               <span ng-show="register.model.$touched && register.model.$error.required" class="error">
+                                    An last name is required.
+                                </span>
                            </div>
                        </div>
                    </div>
@@ -25,7 +31,10 @@
                        <div class="col-sm-12">
                            <div class="form-group">
                                <label for="email">email address</label>
-                               <input type="text" id="email" class="form-control" ng-model="vm.user.email"/>
+                               <input type="text" id="email" class="form-control" ng-model="vm.user.email" ng-required="true"/>
+                               <span ng-show="register.model.$touched && register.model.$error.required" class="error">
+                                    An email address is required.
+                                </span>
                            </div>
                        </div>
                    </div>
@@ -33,13 +42,19 @@
                        <div class="col-sm-6">
                            <div class="form-group">
                                <label for="password">password</label>
-                               <input type="password" id="password" class="form-control" ng-model="vm.user.password"/>
+                               <input type="password" id="password" class="form-control" ng-model="vm.user.password" ng-required="true"/>
+                               <span ng-show="register.model.$touched && register.model.$error.required" class="error">
+                                   A password is required.
+                                </span>
                            </div>
                        </div>
                        <div class="col-sm-6">
                            <div class="form-group">
                                <label for="passwordConfirm">password confirm</label>
                                <input type="password" id="passwordConfirm" class="form-control" ng-model="vm.user.passwordConfirm"/>
+                               <span ng-show="register.model.$touched && register.model.$error.required" class="error">
+                                    A password confirmation is required.
+                                </span>
                            </div>
                            <button type="submit" class="btn btn-primary pull-right">register</button>
                        </div>

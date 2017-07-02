@@ -6,12 +6,15 @@
                 <h3 class="panel-title">add post</h3>
             </div>
             <div class="panel-body">
-                <form ng-submit="vm.addPost(vm.post)">
+                <form name="add" novalidate ng-submit="vm.addPost(vm.post)">
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="title">title</label>
-                                <input type="text" id="title" class="form-control" ng-model="vm.post.title"/>
+                                <input type="text" name="title" id="title" class="form-control" ng-model="vm.post.title" ng-required="true"/>
+                                <span ng-show="add.title.$touched && add.title.$error.required" class="error">
+                                    A title is required.
+                                </span>
                             </div>
                             <label>Tags:</label>
                             <div class="checkbox-inline" ng-repeat="tag in vm.tags">
@@ -21,9 +24,12 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>post</label>
-                                <div ckeditor="options" ng-model="vm.post.body" ready="onReady()"></div>
+                                <div ckeditor="options" ng-model="vm.post.body" ready="onReady()" ng-required="true"></div>
+                                <span ng-show="add.model.$touched && add.model.$error.required" class="error">
+                                    A post body is required.
+                                </span>
                             </div>
-                            <button type="submit" class="btn btn-primary pull-right">add post</button>
+                            <button type="submit" class="btn btn-primary pull-right" ng-disabled="add.$invalid">add post</button>
                         </div>
                     </div>
                 </form>

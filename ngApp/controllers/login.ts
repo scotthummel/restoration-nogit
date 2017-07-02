@@ -3,8 +3,8 @@ namespace restoration.Controllers {
         public email;
         public password;
 
-        constructor(public AuthService: restoration.Services.AuthService) {
-            super(AuthService);
+        constructor(public AuthService: restoration.Services.AuthService, public $document) {
+            super(AuthService, $document);
         }
 
         login() {

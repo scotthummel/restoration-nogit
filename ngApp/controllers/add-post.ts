@@ -6,11 +6,13 @@ namespace restoration.Controllers {
         public selectedTags;
         public options;
 
-        constructor(private BlogService: restoration.Services.BlogService, private TagService: restoration.Services.TagService, private $state, public AuthService: restoration.Services.AuthService) {
-            super(AuthService);
+        constructor(private BlogService: restoration.Services.BlogService, private TagService: restoration.Services.TagService, private $state, public AuthService: restoration.Services.AuthService, public $document) {
+            super(AuthService, $document);
 
             this.TagService.list().then(tags => {
                 this.tags = tags;
+            }).catch((err) => {
+                this.displayError(err.data.errors);
             });
             this.options = {
                 language: 'en',

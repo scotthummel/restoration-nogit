@@ -7,15 +7,19 @@ let router = express.Router();
 
 router.post('/', (req, res) => {
     let tag:any = new Tag();
-    tag.name = req.body.tag.name;
-    tag.save(function(err, newTag) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.end();
-        }
-    });
-
+    if (req.body.tag !== undefined) {
+        tag.name = req.body.tag.name;
+        tag.slug = req.body.tag.name.toLowerCase()
+            .replace(/[^\w ]+/g,'')
+            .replace(/ +/g,'-');
+        tag.save(function(err, newTag) {
+            if (err) {
+                res.status(500).send(err);
+            } else {
+                res.end();
+            }
+        });
+    }
 });
 
 router.get('/', (req, res) => {
@@ -61,7 +65,7 @@ router.delete('/:id', (req, res) => {
 });
 
 router.get('/tag/:slug', (req, res) => {
-    Tag.find({name: req.params['slug']}).populate('posts').then((tags) => {
+    Tag.find({slug: req.params['slug']}).populate('posts').then((tags) => {
         res.json(tags);
     }).catch((err) => {
         res.status(500);

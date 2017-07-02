@@ -6,14 +6,17 @@
                 <h3 class="panel-title">edit tag</h3>
             </div>
             <div class="panel-body">
-                <form ng-submit="vm.editTag()">
+                <form name="edit" novalidate ng-submit="vm.editTag()">
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="name">title</label>
-                                <input type="text" id="name" class="form-control" ng-model="vm.tag.name" />
+                                <label for="name">name</label>
+                                <input type="text" name="tag" id="name" class="form-control" ng-model="vm.tag.name" ng-required="true"/>
+                                <span ng-show="edit.tag.$touched && edit.tag.$error.required" class="error">
+                                    A tag name is required.
+                                </span>
                             </div>
-                            <button type="submit" class="btn btn-primary pull-right">edit tag</button>
+                            <button type="submit" class="btn btn-primary pull-right" ng-disabled="edit.$invalid">edit tag</button>
                         </div>
                     </div>
                 </form>

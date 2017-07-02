@@ -4,9 +4,9 @@ namespace restoration.Controllers {
         public tag;
         public id;
 
-        constructor(private TagService: restoration.Services.TagService, private $state, private $stateParams: ng.ui.IStateParamsService, public AUthService: restoration.Services.AuthService
+        constructor(private TagService: restoration.Services.TagService, private $state, private $stateParams: ng.ui.IStateParamsService, public AuthService: restoration.Services.AuthService, public $document
         ) {
-            super(AUthService);
+            super(AuthService, $document);
             let tagId = this.id = $stateParams['id'];
             this.TagService.get(tagId).then(tag => {
                 this.tag = tag;

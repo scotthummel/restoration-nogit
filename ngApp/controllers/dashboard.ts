@@ -4,8 +4,8 @@ namespace restoration.Controllers {
         public posts;
         public tags;
 
-        constructor(public AuthService: restoration.Services.AuthService, public BlogService: restoration.Services.BlogService, public TagService: restoration.Services.TagService, private $state) {
-            super(AuthService);
+        constructor(public AuthService: restoration.Services.AuthService, public BlogService: restoration.Services.BlogService, public TagService: restoration.Services.TagService, private $state, public $document) {
+            super(AuthService, $document);
 
             let token = this.AuthService.getToken();
             if (token === 'null') {
@@ -27,6 +27,10 @@ namespace restoration.Controllers {
 
         remove(id) {
             this.BlogService.remove(id);
+        }
+
+        delete(id) {
+            this.TagService.remove(id);
         }
     }
 }
