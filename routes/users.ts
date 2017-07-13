@@ -13,6 +13,7 @@ let router = express.Router();
 
 router.post('/register', (req, res) => {
   let user:any = new User();
+  user.username = (+new Date).toString(36);
   user.firstName = req.body.user.firstName;
   user.lastName = req.body.user.lastName;
   user.email = req.body.user.email;

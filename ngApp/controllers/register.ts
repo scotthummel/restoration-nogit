@@ -5,8 +5,8 @@ namespace restoration.Controllers {
         public password;
         public user;
 
-        constructor(public AuthService: restoration.Services.AuthService, public $documnet) {
-            super(AuthService, $documnet);
+        constructor(public AuthService: restoration.Services.AuthService, public $document) {
+            super(AuthService, $document);
         }
 
         register(user) {
